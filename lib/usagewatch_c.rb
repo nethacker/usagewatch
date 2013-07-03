@@ -1,6 +1,6 @@
 #License: (MIT), Copyright (C) 2013 Author Phil Chen.
 
-class DiskStorage
+class UsageWatch
 
   def diskused
     @df = `df`
