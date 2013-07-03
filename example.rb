@@ -8,3 +8,5 @@ u = UsageWatch.new
 
 puts "#{u.diskused} Gigs Used"
 puts "#{u.cpuused}% CPU Used"
+puts "#{u.tcpused} TCP Connections Used"
+puts "#{u.udpused} UDP Connections Used"

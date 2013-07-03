@@ -11,6 +11,7 @@ class UsageWatch
       end
     @round = @sum.round(2)
     @totaldiskused = ((@round/1024)/1024).round(2)
+
   return @totaldiskused
   end
 
@@ -37,5 +38,55 @@ class UsageWatch
       @cpuusagepercentage = (100 * @cpuusage).to_f.round(2)
 
   return @cpuusagepercentage
+  end
+
+  def tcpused
+    if File.exists?("/proc/net/sockstat")
+      File.open("/proc/net/sockstat", "r") do |ipv4|
+      @sockstat = ipv4.read
+    end
+
+      @tcp4data = @sockstat.split
+      @tcp4count = @tcp4data[5]
+    end
+
+    if  File.exists?("/proc/net/sockstat6")
+      File.open("/proc/net/sockstat6", "r") do |ipv6|
+      @sockstat6 = ipv6.read
+
+    end
+
+      @tcp6data = @sockstat6.split
+      @tcp6count = @tcp6data[2]
+    end
+
+    @totaltcpused = @tcp4count.to_i + @tcp6count.to_i
+
+  return @totaltcpused
+  end
+
+    def udpused
+
+    if File.exists?("/proc/net/sockstat")
+      File.open("/proc/net/sockstat", "r") do |ipv4|
+      @sockstat = ipv4.read
+    end
+
+      @udp4data = @sockstat.split
+      @udp4count = @udp4data[16]
+    end
+
+    if File.exists?("/proc/net/sockstat6")
+      File.open("/proc/net/sockstat6", "r") do |ipv6|
+      @sockstat6 = ipv6.read
+    end
+
+      @udp6data = @sockstat6.split
+      @udp6count = @udp6data[5]
+    end
+
+    @totaludpused = @udp4count.to_i + @udp6count.to_i
+
+  return @totaludpused
   end
 end

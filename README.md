@@ -4,7 +4,7 @@ License: (MIT) Copyright (C) 2013 Phil Chen.
 
 ## DESCRIPTION:
 
-A Ruby Class with methods to find usage statistics on a Linux server such as CPU, Disk, Connections, Load, and Memory
+A Ruby Class with methods to find usage statistics on a Linux server such as CPU, Disk, TCP/UDP Connections, Load, and Memory
 
 ## Getting Started
 
@@ -24,6 +24,8 @@ Create a new UsageWatch object:
 u = UsageWatch.new
 u.diskused
 u.cpuused
+u.tcpused
+u.udpused
 ```
 
 The Class is located at lib/usagewatch_class.rb
@@ -33,3 +35,5 @@ The Class is located at lib/usagewatch_class.rb
 Disk Used is a sum of all partitions calculated in Gigabytes
 
 CPU Used is a Percentage
+
+TCP/UDP Connections Used is a total count of each respectively
