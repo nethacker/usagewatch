@@ -8,9 +8,9 @@ A Ruby Class with methods to find usage statistics on a Linux server such as CPU
 
 ## Getting Started
 
-To see an example of usage date run example.rb
+To see an example of usage data run example.rb
 
-or
+Or
 
 Require the library:
 
@@ -22,8 +22,8 @@ Create a new UsageWatch object:
 
 ```ruby
 u = UsageWatch.new
-u.diskused        ==> 42
-u.cpuused         ==> 10
+u.diskused
+u.cpuused
 ```
 
 The Class is located at lib/usagewatch_class.rb
@@ -31,4 +31,5 @@ The Class is located at lib/usagewatch_class.rb
 ## Notes
 
 Disk Used is a sum of all partitions calculated in Gigabytes
+
 CPU Used is a Percentage
