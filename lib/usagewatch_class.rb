@@ -65,8 +65,7 @@ class UsageWatch
   return @totaltcpused
   end
 
-    def udpused
-
+  def udpused
     if File.exists?("/proc/net/sockstat")
       File.open("/proc/net/sockstat", "r") do |ipv4|
       @sockstat = ipv4.read
@@ -88,5 +87,21 @@ class UsageWatch
     @totaludpused = @udp4count.to_i + @udp6count.to_i
 
   return @totaludpused
+  end
+
+  def memused
+    if File.exists?("/proc/meminfo")
+      File.open("/proc/meminfo", "r") do |file|
+      @result = file.read
+      end
+    end
+
+    @memstat = @result.split("\n").collect{|x| x.strip}
+      @memtotal = @memstat[0].gsub(/[^0-9]/, "")
+      @memactive = @memstat[5].gsub(/[^0-9]/, "")
+    @memactivecalc = (@memactive.to_f * 100) / @memtotal.to_f
+      @memusagepercentage = @memactivecalc.round
+
+  return @memusagepercentage
   end
 end

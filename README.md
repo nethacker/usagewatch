@@ -26,6 +26,7 @@ u.diskused
 u.cpuused
 u.tcpused
 u.udpused
+u.memused
 ```
 
 The Class is located at lib/usagewatch_class.rb
@@ -34,6 +35,8 @@ The Class is located at lib/usagewatch_class.rb
 
 Disk Used is a sum of all partitions calculated in Gigabytes
 
-CPU Used is a Percentage
+CPU Used is a percentage of current CPU being used
 
 TCP/UDP Connections Used is a total count of each respectively
+
+Active Memory Used is a percentage of active system memory being used
