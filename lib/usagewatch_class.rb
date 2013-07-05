@@ -113,6 +113,7 @@ class UsageWatch
 
     @load = @loaddata.split(/ /).first
     end
+
   return @load
   end
 end

@@ -43,3 +43,8 @@ TCP/UDP Connections Used is a total count of each respectively
 Active Memory Used is a percentage of active system memory being used
 
 Load is the average load of the past minute
+
+## Tested Using
+
+ruby 1.9.3p429 (2013-05-15) [x86_64-linux]
+
