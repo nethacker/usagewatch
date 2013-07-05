@@ -2,7 +2,7 @@
 #License: (MIT), Copyright (C) 2013 Author Phil Chen.
 
 class UsageWatch
-  def diskused
+  def uw_diskused
     @df = `df`
     @parts = @df.split(" ").map { |s| s.to_i }
     @sum = 0    
@@ -15,7 +15,7 @@ class UsageWatch
   return @totaldiskused
   end
 
-  def cpuused
+  def uw_cpuused
     @proc0 = File.readlines('/proc/stat').grep(/^cpu /).first.split(" ")
     sleep 1
     @proc1 = File.readlines('/proc/stat').grep(/^cpu /).first.split(" ")
@@ -40,7 +40,7 @@ class UsageWatch
   return @cpuusagepercentage
   end
 
-  def tcpused
+  def uw_tcpused
     if File.exists?("/proc/net/sockstat")
       File.open("/proc/net/sockstat", "r") do |ipv4|
       @sockstat = ipv4.read
@@ -65,7 +65,7 @@ class UsageWatch
   return @totaltcpused
   end
 
-  def udpused
+  def uw_udpused
     if File.exists?("/proc/net/sockstat")
       File.open("/proc/net/sockstat", "r") do |ipv4|
       @sockstat = ipv4.read
@@ -89,7 +89,7 @@ class UsageWatch
   return @totaludpused
   end
 
-  def memused
+  def uw_memused
     if File.exists?("/proc/meminfo")
       File.open("/proc/meminfo", "r") do |file|
       @result = file.read
@@ -103,5 +103,16 @@ class UsageWatch
       @memusagepercentage = @memactivecalc.round
 
   return @memusagepercentage
+  end
+
+  def uw_load
+    if File.exists?("/proc/loadavg")
+      File.open("/proc/loadavg", "r") do |file|
+      @loaddata = file.read
+    end
+
+    @load = @loaddata.split(/ /).first
+    end
+  return @load
   end
 end

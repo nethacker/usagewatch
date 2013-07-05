@@ -6,8 +6,9 @@ require './lib/usagewatch_class'
 
 u = UsageWatch.new
 
-puts "#{u.diskused} Gigs Used"
-puts "#{u.cpuused}% CPU Used"
-puts "#{u.tcpused} TCP Connections Used"
-puts "#{u.udpused} UDP Connections Used"
-puts "#{u.memused}% Active Memory Used"
+puts "#{u.uw_diskused} Gigs Used"
+puts "#{u.uw_cpuused}% CPU Used"
+puts "#{u.uw_tcpused} TCP Connections Used"
+puts "#{u.uw_udpused} UDP Connections Used"
+puts "#{u.uw_memused}% Active Memory Used"
+puts "#{u.uw_load} Average System Load Of The Past Minute"

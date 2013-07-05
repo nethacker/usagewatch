@@ -22,11 +22,12 @@ Create a new UsageWatch object:
 
 ```ruby
 u = UsageWatch.new
-u.diskused
-u.cpuused
-u.tcpused
-u.udpused
-u.memused
+u.uw_diskused
+u.uw_cpuused
+u.uw_tcpused
+u.uw_udpused
+u.uw_memused
+u.uw_load
 ```
 
 The Class is located at lib/usagewatch_class.rb
@@ -40,3 +41,5 @@ CPU Used is a percentage of current CPU being used
 TCP/UDP Connections Used is a total count of each respectively
 
 Active Memory Used is a percentage of active system memory being used
+
+Load is the average load of the past minute
