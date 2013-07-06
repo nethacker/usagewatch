@@ -4,7 +4,7 @@ License: (MIT) Copyright (C) 2013 Phil Chen.
 
 ## DESCRIPTION:
 
-A Ruby Class with methods to find usage statistics on a Linux server such as CPU, Disk, TCP/UDP Connections, Load, Bandwidth, and Memory
+A Ruby Class with methods to find usage statistics on a Linux server such as CPU, Disk, TCP/UDP Connections, Load, Bandwidth, Disk I/O, and Memory
 
 ## Getting Started
 
@@ -30,6 +30,8 @@ u.uw_memused
 u.uw_load
 u.uw_bandrx
 u.uw_bandtx
+u.uw_diskioreads
+u.uw_diskiowrites
 ```
 
 The Class is located at lib/usagewatch_class.rb
@@ -48,7 +50,12 @@ Load is the average load of the past minute
 
 Bandwidth is current received and transmitted in Megabits
 
+Disk IO is current disk reads and writes completed per second
+
 ## Tested Using
 
+RUBY VERSIONS:
 ruby 1.9.3p429 (2013-05-15) [x86_64-linux]
 
+OS VERSIONS:
+CENTOS 5x 6x
