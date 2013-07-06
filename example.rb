@@ -6,11 +6,11 @@ require './lib/usagewatch_class'
 
 u = UsageWatch.new
 
-puts "#{u.uw_diskused} Gigs Used"
+puts "#{u.uw_diskused} Gigabytes Used"
 puts "#{u.uw_cpuused}% CPU Used"
 puts "#{u.uw_tcpused} TCP Connections Used"
 puts "#{u.uw_udpused} UDP Connections Used"
 puts "#{u.uw_memused}% Active Memory Used"
 puts "#{u.uw_load} Average System Load Of The Past Minute"
-puts "#{u.uw_bandrx} Current Bandwidth In Megabits Received"
-puts "#{u.uw_bandtx} Current Bandwidth In Megabits Transmitted"
+puts "#{u.uw_bandrx} Mbit/s Current Bandwidth Received"
+puts "#{u.uw_bandtx} Mbit/s Current Bandwidth Transmitted"
