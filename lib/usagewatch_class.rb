@@ -116,4 +116,118 @@ class UsageWatch
 
   return @load
   end
+
+  def uw_bandrx
+
+    def bandrx
+
+    if File.exists?("/proc/net/dev")
+      File.open("/proc/net/dev", "r") do |file|
+      @result = file.read
+      end
+    end
+
+    @arrRows = @result.split("\n")
+
+    @arrEthLoRows = @arrRows.grep(/eth|lo/)
+
+    rowcount = (@arrEthLoRows.count - 1)
+
+    for i in (0..rowcount)
+      @arrEthLoRows[i] = @arrEthLoRows[i].gsub(/\s+/m, ' ').strip.split(" ")
+    end
+
+    @arrColumns = Array.new
+    for l in (0..rowcount)
+      @temp = Array.new
+      @temp[0] = @arrEthLoRows[l][1]
+      @temp[1] = @arrEthLoRows[l][9]
+      @arrColumns << @temp
+    end
+
+    columncount = (@arrColumns[0].count - 1)
+
+    @arrTotal = Array.new
+    for p in (0..columncount)
+      @arrTotal[p] = 0
+    end
+
+    for j in (0..columncount)
+      for k in (0..rowcount)
+        @arrTotal[j] = @arrColumns[k][j].to_i + @arrTotal[j]
+      end
+    end
+
+    @bandrxtx= @arrTotal
+
+    return @bandrxtx
+    end
+
+  @new0 = bandrx
+  sleep 1
+  @new1 = bandrx
+
+  @bytesreceived = @new1[0].to_i - @new0[0].to_i
+  @bitsreceived = (@bytesreceived * 8)
+  @megabitsreceived = (@bitsreceived.to_f / 1024 / 1024)
+
+  return @megabitsreceived.round(2)
+  end
+
+def uw_bandtx
+
+    def bandtx
+
+    if File.exists?("/proc/net/dev")
+      File.open("/proc/net/dev", "r") do |file|
+      @result = file.read
+      end
+    end
+
+    @arrRows = @result.split("\n")
+
+    @arrEthLoRows = @arrRows.grep(/eth|lo/)
+
+    rowcount = (@arrEthLoRows.count - 1)
+
+    for i in (0..rowcount)
+      @arrEthLoRows[i] = @arrEthLoRows[i].gsub(/\s+/m, ' ').strip.split(" ")
+    end
+
+    @arrColumns = Array.new
+    for l in (0..rowcount)
+      @temp = Array.new
+      @temp[0] = @arrEthLoRows[l][1]
+      @temp[1] = @arrEthLoRows[l][9]
+      @arrColumns << @temp
+    end
+
+    columncount = (@arrColumns[0].count - 1)
+
+    @arrTotal = Array.new
+    for p in (0..columncount)
+      @arrTotal[p] = 0
+    end
+
+    for j in (0..columncount)
+      for k in (0..rowcount)
+        @arrTotal[j] = @arrColumns[k][j].to_i + @arrTotal[j]
+      end
+    end
+
+    @bandrxtx = @arrTotal
+
+    return @bandrxtx
+    end
+
+  @new0 = bandtx
+  sleep 1
+  @new1 = bandtx
+
+  @bytestransmitted = @new1[1].to_i - @new0[1].to_i
+  @bitstransmitted = (@bytestransmitted * 8)
+  @megabitstransmitted = (@bitstransmitted.to_f / 1024 / 1024)
+
+  return @megabitstransmitted.round(2)
+  end
 end
