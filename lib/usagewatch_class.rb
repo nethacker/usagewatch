@@ -171,7 +171,7 @@ class UsageWatch
   @bitsreceived = (@bytesreceived * 8)
   @megabitsreceived = (@bitsreceived.to_f / 1024 / 1024)
 
-  return @megabitsreceived.round(2)
+  return @megabitsreceived.round(3)
   end
 
 def uw_bandtx
@@ -228,6 +228,6 @@ def uw_bandtx
   @bitstransmitted = (@bytestransmitted * 8)
   @megabitstransmitted = (@bitstransmitted.to_f / 1024 / 1024)
 
-  return @megabitstransmitted.round(2)
+  return @megabitstransmitted.round(3)
   end
 end
