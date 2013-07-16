@@ -1,4 +1,3 @@
-
 #License: (MIT), Copyright (C) 2013 Author Phil Chen.
 
 class UsageWatch
@@ -14,7 +13,13 @@ class UsageWatch
 
   return @totaldiskused
   end
-
+  
+  # Show the percentage of disk used.
+  def uw_diskused_perc
+    df = `df --total`
+    df.split(" ").last.to_f.round(2)
+  end   
+  
   def uw_cpuused
     @proc0 = File.readlines('/proc/stat').grep(/^cpu /).first.split(" ")
     sleep 1
