@@ -23,6 +23,7 @@ Create a new UsageWatch object:
 ```ruby
 u = UsageWatch.new
 u.uw_diskused
+u.uw_diskused_perc
 u.uw_cpuused
 u.uw_tcpused
 u.uw_udpused
@@ -39,6 +40,8 @@ The Class is located at lib/usagewatch_class.rb
 ## Notes
 
 Disk Used is a sum of all partitions calculated in Gigabytes
+
+Disk Used Percentage is a total percentage of all disk partitions used
 
 CPU Used is a percentage of current CPU being used
 
