@@ -6,7 +6,8 @@ require './lib/usagewatch_class'
 
 u = UsageWatch.new
 
-puts "#{u.uw_diskused} Gigabytes Used"
+puts "#{u.uw_diskused} Gigabytes Disk Used"
+puts "#{u.uw_diskused_perc}% Disk Used"
 puts "#{u.uw_cpuused}% CPU Used"
 puts "#{u.uw_tcpused} TCP Connections Used"
 puts "#{u.uw_udpused} UDP Connections Used"
