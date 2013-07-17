@@ -31,6 +31,7 @@ uw_diskiowrites
 
 ## Example
 
+```bash
 Run:
 
 example.rb
@@ -48,6 +49,7 @@ Example Output:
 0.2 Mbit/s Current Bandwidth Transmitted
 0/s Current Disk Reads Completed
 2/s Current Disk Writes Completed
+```
 
 ## Notes
 
