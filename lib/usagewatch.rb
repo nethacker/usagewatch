@@ -12,8 +12,6 @@ module Usagewatch
     end
     @round = @sum.round(2)
     @totaldiskused = ((@round/1024)/1024).round(2)
-
-    return @totaldiskused
   end
 
   # Show the percentage of disk used.
@@ -43,8 +41,6 @@ module Usagewatch
 
     @cpuusage = (@procusage.to_f / @proctotal.to_f)
     @cpuusagepercentage = (100 * @cpuusage).to_f.round(2)
-
-    return @cpuusagepercentage
   end
 
   def uw_tcpused
@@ -68,8 +64,6 @@ module Usagewatch
     end
 
     @totaltcpused = @tcp4count.to_i + @tcp6count.to_i
-
-    return @totaltcpused
   end
 
   def uw_udpused
@@ -92,8 +86,6 @@ module Usagewatch
     end
 
     @totaludpused = @udp4count.to_i + @udp6count.to_i
-
-    return @totaludpused
   end
 
   def uw_memused
@@ -108,8 +100,6 @@ module Usagewatch
     @memactive = @memstat[5].gsub(/[^0-9]/, "")
     @memactivecalc = (@memactive.to_f * 100) / @memtotal.to_f
     @memusagepercentage = @memactivecalc.round
-
-    return @memusagepercentage
   end
 
   def uw_load
@@ -118,10 +108,8 @@ module Usagewatch
         @loaddata = file.read
       end
 
-      @load = @loaddata.split(/ /).first
+      @load = @loaddata.split(/ /).first.to_f
     end
-
-    return @load.to_f
   end
 
   def uw_bandrx
@@ -166,8 +154,6 @@ module Usagewatch
       end
 
       @bandrxtx= @arrTotal
-
-      return @bandrxtx
     end
 
     @new0 = bandrx
@@ -176,9 +162,7 @@ module Usagewatch
 
     @bytesreceived = @new1[0].to_i - @new0[0].to_i
     @bitsreceived = (@bytesreceived * 8)
-    @megabitsreceived = (@bitsreceived.to_f / 1024 / 1024)
-
-    return @megabitsreceived.round(3)
+    @megabitsreceived = (@bitsreceived.to_f / 1024 / 1024).round(3)
   end
 
   def uw_bandtx
@@ -223,8 +207,6 @@ module Usagewatch
       end
 
       @bandrxtx = @arrTotal
-
-      return @bandrxtx
     end
 
     @new0 = bandtx
@@ -233,9 +215,7 @@ module Usagewatch
 
     @bytestransmitted = @new1[1].to_i - @new0[1].to_i
     @bitstransmitted = (@bytestransmitted * 8)
-    @megabitstransmitted = (@bitstransmitted.to_f / 1024 / 1024)
-
-    return @megabitstransmitted.round(3)
+    @megabitstransmitted = (@bitstransmitted.to_f / 1024 / 1024).round(3)
   end
 
   def uw_diskioreads
@@ -278,8 +258,6 @@ module Usagewatch
       end
 
       @diskiorw= @arrTotal
-
-      return @diskiorw
     end
 
     @new0 = diskio
@@ -287,8 +265,6 @@ module Usagewatch
     @new1 = diskio
 
     @diskreads = @new1[0].to_i - @new0[0].to_i
-
-    return @diskreads
   end
 
   def uw_diskiowrites
@@ -331,8 +307,6 @@ module Usagewatch
       end
 
       @diskiorw= @arrTotal
-
-      return @diskiorw
     end
 
     @new0 = diskio
@@ -340,7 +314,5 @@ module Usagewatch
     @new1 = diskio
 
     @diskwrites = @new1[1].to_i - @new0[1].to_i
-
-    return @diskwrites
   end
 end
