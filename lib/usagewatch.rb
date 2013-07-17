@@ -121,7 +121,7 @@ module Usagewatch
       @load = @loaddata.split(/ /).first
     end
 
-    return @load
+    return @load.to_f
   end
 
   def uw_bandrx
