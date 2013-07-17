@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-    ```ruby
+```ruby
     require 'usagewatch'
 
     include Usagewatch
@@ -33,7 +33,7 @@ Or install it yourself as:
     puts "#{uw_bandtx} Mbit/s Current Bandwidth Transmitted"
     puts "#{uw_diskioreads}/s Current Disk Reads Completed"
     puts "#{uw_diskiowrites}/s Current Disk Writes Completed"
-    ```
+```
 
 ## Contributing
 
