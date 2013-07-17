@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-#License: (MIT), Copyright (C) 2013 Author Phil Chen.
+#License: (MIT), Copyright (C) 2013 Author Phil Chen, Contributor Ruben Espinosa
 
 require 'usagewatch'
 

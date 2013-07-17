@@ -1,3 +1,5 @@
+#License: (MIT), Copyright (C) 2013 Author Phil Chen, Contributor Ruben Espinosa
+
 require "usagewatch/version"
 
 module Usagewatch
@@ -119,7 +121,7 @@ module Usagewatch
       @load = @loaddata.split(/ /).first
     end
 
-    return @load
+    return @load.to_f
   end
 
   def uw_bandrx

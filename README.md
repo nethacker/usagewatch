@@ -1,69 +1,78 @@
-# Usagewatch
+# usagewatch
 
-A Ruby Class with methods to find usage statistics on a Linux server such as CPU, Disk, TCP/UDP
-Connections, Load, Bandwidth, Disk I/O, and Memory
+License: (MIT) Copyright (C) 2013 Author Phil Chen, Contributor Ruben Espinosa.
 
-## Installation
+## DESCRIPTION:
 
-Add this line to your application's Gemfile:
+A Ruby Class with methods to find usage statistics on a Linux server such as CPU, Disk, TCP/UDP Connections, Load, 
+Bandwidth, Disk I/O, and Memory
 
-    gem 'usagewatch'
+## Getting Started
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install usagewatch
-
-## Usage
+gem install usagewatch
 
 ```ruby
-    require 'usagewatch'
+require 'usagewatch'
 
-    include Usagewatch
+include Usagewatch
 
-    puts "#{uw_diskused} Gigabytes Used"
-    puts "#{uw_cpuused}% CPU Used"
-    puts "#{uw_tcpused} TCP Connections Used"
-    puts "#{uw_udpused} UDP Connections Used"
-    puts "#{uw_memused}% Active Memory Used"
-    puts "#{uw_load} Average System Load Of The Past Minute"
-    puts "#{uw_bandrx} Mbit/s Current Bandwidth Received"
-    puts "#{uw_bandtx} Mbit/s Current Bandwidth Transmitted"
-    puts "#{uw_diskioreads}/s Current Disk Reads Completed"
-    puts "#{uw_diskiowrites}/s Current Disk Writes Completed"
+uw_diskused
+uw_diskused_perc
+uw_cpuused
+uw_tcpused
+uw_udpused
+uw_memused
+uw_load
+uw_bandrx
+uw_bandtx
+uw_diskioreads
+uw_diskiowrites
 ```
 
-## Contributing
+## Example
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+```bash
+Run:
+
+example.rb
+
+Example Output:
+
+11.56 Gigabytes Disk Used
+7.0% Disk Used
+0.25% CPU Used
+30 TCP Connections Used
+0 UDP Connections Used
+43% Active Memory Used
+0.01 Average System Load Of The Past Minute
+0.008 Mbit/s Current Bandwidth Received
+0.2 Mbit/s Current Bandwidth Transmitted
+0/s Current Disk Reads Completed
+2/s Current Disk Writes Completed
+```
 
 ## Notes
 
-* Disk Used is a sum of all partitions calculated in Gigabytes
+Disk Used is a sum of all partitions calculated in Gigabytes
 
-* Disk Used Percentage is a total percentage of all disk partitions used
+Disk Used Percentage is a total percentage of all disk partitions used
 
-* CPU Used is a percentage of current CPU being used
+CPU Used is a percentage of current CPU being used
 
-* TCP/UDP Connections Used is a total count of each respectively
+TCP/UDP Connections Used is a total count of each respectively
 
-* Active Memory Used is a percentage of active system memory being used
+Active Memory Used is a percentage of active system memory being used
 
-* Load is the average load of the past minute
+Load is the average load of the past minute
 
-* Bandwidth is current received and transmitted in Megabits
+Bandwidth is current received and transmitted in Megabits
 
-* Disk IO is current disk reads and writes completed per second
+Disk IO is current disk reads and writes completed per second
 
 ## Tested Using
 
-RUBY VERSIONS: ruby 1.9.3p429 (2013-05-15) [x86_64-linux], ruby2.0
+RUBY VERSIONS:
+ruby 1.9.3p429 (2013-05-15) [x86_64-linux]
 
-OS VERSIONS: CENTOS 5x 6x, Ubuntu 12.04
+OS VERSIONS:
+CENTOS 5x 6x
