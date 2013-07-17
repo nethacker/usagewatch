@@ -1,3 +1,5 @@
+#License: (MIT), Copyright (C) 2013 Author Phil Chen, Contributor Ruben Espinosa
+
 require "usagewatch/version"
 
 module Usagewatch
