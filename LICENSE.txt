@@ -1,4 +1,4 @@
-Copyright (c) 2013 Phil Chen and Ruben Espinosa
+Copyright (c) 2013 Author Phil Chen, Contributor Ruben Espinosa
 
 MIT License
 
