@@ -31,7 +31,23 @@ uw_diskiowrites
 
 ## Example
 
-Ruby examples/example.rb
+Run:
+
+example.rb
+
+Example Output:
+
+11.56 Gigabytes Disk Used
+7.0% Disk Used
+0.25% CPU Used
+30 TCP Connections Used
+0 UDP Connections Used
+43% Active Memory Used
+0.01 Average System Load Of The Past Minute
+0.008 Mbit/s Current Bandwidth Received
+0.2 Mbit/s Current Bandwidth Transmitted
+0/s Current Disk Reads Completed
+2/s Current Disk Writes Completed
 
 ## Notes
 
