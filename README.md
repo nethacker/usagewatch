@@ -29,6 +29,10 @@ uw_diskioreads
 uw_diskiowrites
 ```
 
+## Example
+
+Ruby examples/example.rb
+
 ## Notes
 
 Disk Used is a sum of all partitions calculated in Gigabytes
