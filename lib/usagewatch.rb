@@ -8,7 +8,7 @@ text =  "OS is not supported in this version."
 if os.include? "darwin"
   puts "Mac" + text
 elsif os.include? "linux"
-  require "usagewatch/usagewatch"
+  require "usagewatch/linux"
 elsif os =~ /cygwin|mswin|mingw|bccwin|wince|emx/
   puts "Windows" + text
 else

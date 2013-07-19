@@ -39,6 +39,19 @@ module Usagewatch
     @cpuusagepercentage = (100 * @cpuusage).to_f.round(2)
   end
 
+  # return hash of top ten proccesses by cpu consumption
+  # example [["apache2", 12.0], ["passenger", 13.2]]
+  def uw_cputop
+    ps = `ps aux | awk '{print $11, $3}' | sort -k2nr  | head -n 10`
+    array = []
+    ps.each_line do |line|
+      line = line.chomp.split(" ")
+      array << [line.first.gsub(/[\[\]]/, ""), line.last]
+    end
+    array
+  end
+
+
   def uw_tcpused
     if File.exists?("/proc/net/sockstat")
       File.open("/proc/net/sockstat", "r") do |ipv4|
@@ -96,6 +109,18 @@ module Usagewatch
     @memactive = @memstat[5].gsub(/[^0-9]/, "")
     @memactivecalc = (@memactive.to_f * 100) / @memtotal.to_f
     @memusagepercentage = @memactivecalc.round
+  end
+
+  # return hash of top ten proccesses by mem consumption
+  # example [["apache2", 12.0], ["passenger", 13.2]]
+  def uw_cputop
+    ps = `ps aux | awk '{print $11, $4}' | sort -k2nr  | head -n 10`
+    array = []
+    ps.each_line do |line|
+      line = line.chomp.split(" ")
+      array << [line.first.gsub(/[\[\]]/, ""), line.last]
+    end
+    array
   end
 
   def uw_load
