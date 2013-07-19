@@ -113,7 +113,7 @@ module Usagewatch
 
   # return hash of top ten proccesses by mem consumption
   # example [["apache2", 12.0], ["passenger", 13.2]]
-  def uw_cputop
+  def uw_memtop
     ps = `ps aux | awk '{print $11, $4}' | sort -k2nr  | head -n 10`
     array = []
     ps.each_line do |line|
