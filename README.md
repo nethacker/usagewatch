@@ -27,6 +27,8 @@ uw_bandrx
 uw_bandtx
 uw_diskioreads
 uw_diskiowrites
+uw_cputop
+uw_memtop
 ```
 
 ## Example
@@ -49,6 +51,10 @@ Example Output:
 0.2 Mbit/s Current Bandwidth Transmitted
 0/s Current Disk Reads Completed
 2/s Current Disk Writes Completed
+Top Ten Processes By CPU Consumption:
+[["/usr/lib64/erlang/erts-5.8.5/bin/beam.smp", "5.2"], ["ruby", "4.1"], ["ps", "2.0"], ["abrt-dump-oops", "0.8"], ["aoe_ktio", "0.7"], ["aoe_tx", "0.4"], ["ata_sff", "0.2"], ["auditd", "0.1"], ["awk", "0.1"], ["-bash", "0.1"]]
+Top Ten Processes By Memory Consumption:
+[["unicorn", "4.8"], ["unicorn", "4.7"], ["unicorn", "4.6"], ["unicorn", "4.6"], ["unicorn", "4.5"], ["unicorn", "4.5"], ["unicorn", "4.3"], ["unicorn", "4.3"], ["unicorn", "4.2"], ["/usr/lib64/erlang/erts-5.8.5/bin/beam.smp", "4.0"]]
 ```
 
 ## Notes
@@ -69,10 +75,14 @@ Bandwidth is current received and transmitted in Megabits
 
 Disk IO is current disk reads and writes completed per second
 
+Top Ten Processes By CPU Consumption are based on percent CPU used
+
+Top Ten Processes By Memory Consumption are base on percent Memory used
+
 ## Tested Using
 
 RUBY VERSIONS:
 ruby 1.9.3p429 (2013-05-15) [x86_64-linux]
 
 OS VERSIONS:
-CENTOS 5x 6x
+CENTOS 5x 6x, Ubuntu 12.04, Fedora 18
