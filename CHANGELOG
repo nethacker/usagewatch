@@ -1,3 +1,8 @@
+0.0.6.beta1 July 19 2013
+====
+* Added methods for top ten processes by CPU consumption
+* Added methods for top ten processes by Memory consumption
+* Validation to work only in Linux OS
 
 0.0.3, 0.0.4, 0.0.5 Jul 17 2013
 ====
