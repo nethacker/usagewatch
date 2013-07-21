@@ -82,6 +82,7 @@ Top Ten Processes By Memory Consumption:
     uw_memtop
     uw_load
     uw_cpuused
+    uw_memused
 
 
 ## Notes
