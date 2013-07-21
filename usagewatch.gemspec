@@ -20,4 +20,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.post_install_message = "* Linux version are covered for our test.\n* Mac OS version is in development\nThanks for installing!"
 end
