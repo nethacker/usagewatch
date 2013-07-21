@@ -14,21 +14,21 @@ gem install usagewatch
 ```ruby
 require 'usagewatch'
 
-include Usagewatch
+usw = Usagewatch
 
-uw_diskused
-uw_diskused_perc
-uw_cpuused
-uw_tcpused
-uw_udpused
-uw_memused
-uw_load
-uw_bandrx
-uw_bandtx
-uw_diskioreads
-uw_diskiowrites
-uw_cputop
-uw_memtop
+usw.uw_diskused
+usw.uw_diskused_perc
+usw.uw_cpuused
+usw.uw_tcpused
+usw.uw_udpused
+usw.uw_memused
+usw.uw_load
+usw.uw_bandrx
+usw.uw_bandtx
+usw.uw_diskioreads
+usw.uw_diskiowrites
+usw.uw_cputop
+usw.uw_memtop
 ```
 
 ## Example
@@ -36,7 +36,7 @@ uw_memtop
 ```bash
 Run:
 
-example.rb
+linux_example.rb
 
 Example Output:
 
@@ -56,6 +56,31 @@ Top Ten Processes By CPU Consumption:
 Top Ten Processes By Memory Consumption:
 [["unicorn", "4.8"], ["unicorn", "4.7"], ["unicorn", "4.6"], ["unicorn", "4.6"], ["unicorn", "4.5"], ["unicorn", "4.5"], ["unicorn", "4.3"], ["unicorn", "4.3"], ["unicorn", "4.2"], ["/usr/lib64/erlang/erts-5.8.5/bin/beam.smp", "4.0"]]
 ```
+
+
+## Methods availables
+
+##### Linux
+uw_diskused
+uw_diskused_perc
+uw_cpuused
+uw_tcpused
+uw_udpused
+uw_memused
+uw_load
+uw_bandrx
+uw_bandtx
+uw_diskioreads
+uw_diskiowrites
+uw_cputop
+uw_memtop
+
+##### Mac
+uw_diskused
+uw_diskused_perc
+uw_cputop
+uw_memtop
+
 
 ## Notes
 
@@ -85,4 +110,4 @@ RUBY VERSIONS:
 ruby 1.9.3p429 (2013-05-15) [x86_64-linux]
 
 OS VERSIONS:
-CENTOS 5x 6x, Ubuntu 12.04, Fedora 18
+CENTOS 5x 6x, Ubuntu 12.04, Fedora 18, Mountain Lion 10.8.4
