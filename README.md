@@ -80,6 +80,8 @@ uw_diskused
 uw_diskused_perc
 uw_cputop
 uw_memtop
+uw_load
+uw_cpuused
 
 
 ## Notes

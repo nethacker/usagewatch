@@ -29,7 +29,7 @@ module Usagewatch
   end
 
   # Show the percentage of cpu used
-  def uw_cpuused
+  def self.uw_cpuused
     iostat = `iostat -w1 -c 2 | awk '{print $5, $4, $5 + $4}'`
     cpu = 0.0
     iostat.each_line.with_index do |line, line_index|
@@ -79,7 +79,7 @@ module Usagewatch
   #end
 
   # Show the average of load in the last minute
-  def uw_load
+  def self.uw_load
     iostat = `iostat -w1 -c 2 | awk '{print $7}'`
     cpu = 0.0
     iostat.each_line.with_index do |line, line_index|
