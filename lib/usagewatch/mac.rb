@@ -78,10 +78,16 @@ module Usagewatch
   #
   #end
 
-  #todo
-  #def uw_load
-  #
-  #end
+  # Show the average of load in the last minute
+  def uw_load
+    iostat = `iostat -w1 -c 2 | awk '{print $7}'`
+    cpu = 0.0
+    iostat.each_line.with_index do |line, line_index|
+      next if line_index.eql? 0 or  line_index.eql? 1 or  line_index.eql? 2
+      cpu = line.split(" ").last.to_f.round(2)
+    end
+    cpu
+  end
 
   #todo
   #def uw_bandrx
