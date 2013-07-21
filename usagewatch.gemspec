@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Statistics on a Linux server}
   spec.homepage      = "https://github.com/nethacker/usagewatch"
   spec.license       = "MIT"
+  spec.rdoc_options << '--main' << 'README'
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
