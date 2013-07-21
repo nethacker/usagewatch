@@ -30,13 +30,9 @@ module Usagewatch
 
   # Show the percentage of cpu used
   def self.uw_cpuused
-    iostat = `iostat -w1 -c 2 | awk '{print $5, $4, $5 + $4}'`
-    cpu = 0.0
-    iostat.each_line.with_index do |line, line_index|
-      next if line_index.eql? 0 or  line_index.eql? 1 or  line_index.eql? 2
-      cpu = line.split(" ").last.to_f.round(2)
-    end
-    cpu
+    top = `top -l1 | awk '/CPU usage/'`
+    top = top.gsub(/[\,a-zA-Z:]/, "").split(" ")
+    top[0].to_f
   end
 
   # return hash of top ten proccesses by cpu consumption
@@ -73,10 +69,12 @@ module Usagewatch
     array
   end
 
-  #todo
-  #def uw_memused
-  #
-  #end
+  # Percentage of mem used
+  def self.uw_memused
+    top = `top -l1 | awk '/PhysMem/'`
+    top = top.gsub(/[\.\,a-zA-Z:]/, "").split(" ").reverse
+    ((top[1].to_f / (top[0].to_f + top[1].to_f)) * 100).round(2)
+  end
 
   # Show the average of load in the last minute
   def self.uw_load
