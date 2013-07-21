@@ -19,7 +19,6 @@ module Usagewatch
     total = 0.0
     used = 0.0
     df.each_line.with_index do |line, line_index|
-      df.split(" ").last.to_f.round(2)
       next if line_index.eql? 0
       line = line.split(" ")
       next if line[0] =~ /localhost/ #ignore backup filesystem
@@ -29,10 +28,16 @@ module Usagewatch
     ((used/total) * 100).round(2)
   end
 
-  # todo
-  #def uw_cpuused
-  #
-  #end
+  # Show the percentage of cpu used
+  def uw_cpuused
+    iostat = `iostat -w1 -c 2 | awk '{print $5, $4, $5 + $4}'`
+    cpu = 0.0
+    iostat.each_line.with_index do |line, line_index|
+      next if line_index.eql? 0 or  line_index.eql? 1 or  line_index.eql? 2
+      cpu = line.split(" ").last.to_f.round(2)
+    end
+    cpu
+  end
 
   # return hash of top ten proccesses by cpu consumption
   # example [["apache2", 12.0], ["passenger", 13.2]]
