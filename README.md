@@ -61,27 +61,27 @@ Top Ten Processes By Memory Consumption:
 ## Methods availables
 
 ##### Linux
-uw_diskused
-uw_diskused_perc
-uw_cpuused
-uw_tcpused
-uw_udpused
-uw_memused
-uw_load
-uw_bandrx
-uw_bandtx
-uw_diskioreads
-uw_diskiowrites
-uw_cputop
-uw_memtop
+    uw_diskused
+    uw_diskused_perc
+    uw_cpuused
+    uw_tcpused
+    uw_udpused
+    uw_memused
+    uw_load
+    uw_bandrx
+    uw_bandtx
+    uw_diskioreads
+    uw_diskiowrites
+    uw_cputop
+    uw_memtop
 
 ##### Mac
-uw_diskused
-uw_diskused_perc
-uw_cputop
-uw_memtop
-uw_load
-uw_cpuused
+    uw_diskused
+    uw_diskused_perc
+    uw_cputop
+    uw_memtop
+    uw_load
+    uw_cpuused
 
 
 ## Notes
