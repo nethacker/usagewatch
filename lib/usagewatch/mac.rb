@@ -41,7 +41,7 @@ module Usagewatch
     array = []
     ps.each_line do |line|
       line = line.chomp.split(" ")
-      array << [line.first.gsub(/[\[\]]/, ""), line.last]
+      array << [line.first.gsub(/[\[\]]/, "").split("/").last, line.last]
     end
     array
   end
