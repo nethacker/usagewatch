@@ -231,9 +231,9 @@ module Usagewatch
 
   def self.uw_bandtx
 
-    @new0 = Usagewatch.bandtx
+    @new0 = bandtx
     sleep 1
-    @new1 = Usagewatch.bandtx
+    @new1 = bandtx
 
     @bytestransmitted = @new1[1].to_i - @new0[1].to_i
     @bitstransmitted = (@bytestransmitted * 8)
@@ -283,9 +283,9 @@ module Usagewatch
 
   def self.uw_diskioreads
 
-    @new0 = Usagewatch.diskio
+    @new0 = diskio
     sleep 1
-    @new1 = Usagewatch.diskio
+    @new1 = diskio
 
     @diskreads = @new1[0].to_i - @new0[0].to_i
   end
@@ -333,9 +333,9 @@ module Usagewatch
 
   def self.uw_diskiowrites
 
-    @new0 = Usagewatch.diskio
+    @new0 = diskio
     sleep 1
-    @new1 = Usagewatch.diskio
+    @new1 = diskio
 
     @diskwrites = @new1[1].to_i - @new0[1].to_i
   end
