@@ -133,49 +133,50 @@ module Usagewatch
     end
   end
 
-  def self.uw_bandrx
+  def self.bandrx
 
-    def bandrx
-
-      if File.exists?("/proc/net/dev")
-        File.open("/proc/net/dev", "r") do |file|
-          @result = file.read
-        end
+    if File.exists?("/proc/net/dev")
+      File.open("/proc/net/dev", "r") do |file|
+        @result = file.read
       end
-
-      @arrRows = @result.split("\n")
-
-      @arrEthLoRows = @arrRows.grep(/eth|lo/)
-
-      rowcount = (@arrEthLoRows.count - 1)
-
-      for i in (0..rowcount)
-        @arrEthLoRows[i] = @arrEthLoRows[i].gsub(/\s+/m, ' ').strip.split(" ")
-      end
-
-      @arrColumns = Array.new
-      for l in (0..rowcount)
-        @temp = Array.new
-        @temp[0] = @arrEthLoRows[l][1]
-        @temp[1] = @arrEthLoRows[l][9]
-        @arrColumns << @temp
-      end
-
-      columncount = (@arrColumns[0].count - 1)
-
-      @arrTotal = Array.new
-      for p in (0..columncount)
-        @arrTotal[p] = 0
-      end
-
-      for j in (0..columncount)
-        for k in (0..rowcount)
-          @arrTotal[j] = @arrColumns[k][j].to_i + @arrTotal[j]
-        end
-      end
-
-      @bandrxtx= @arrTotal
     end
+
+    @arrRows = @result.split("\n")
+
+    @arrEthLoRows = @arrRows.grep(/eth|lo/)
+
+    rowcount = (@arrEthLoRows.count - 1)
+
+    for i in (0..rowcount)
+      @arrEthLoRows[i] = @arrEthLoRows[i].gsub(/\s+/m, ' ').strip.split(" ")
+    end
+
+    @arrColumns = Array.new
+    for l in (0..rowcount)
+      @temp = Array.new
+      @temp[0] = @arrEthLoRows[l][1]
+      @temp[1] = @arrEthLoRows[l][9]
+      @arrColumns << @temp
+    end
+
+    columncount = (@arrColumns[0].count - 1)
+
+    @arrTotal = Array.new
+    for p in (0..columncount)
+      @arrTotal[p] = 0
+    end
+
+    for j in (0..columncount)
+      for k in (0..rowcount)
+        @arrTotal[j] = @arrColumns[k][j].to_i + @arrTotal[j]
+      end
+    end
+
+    @bandrxtx = @arrTotal
+  end
+
+
+  def self.uw_bandrx
 
     @new0 = bandrx
     sleep 1
@@ -186,153 +187,155 @@ module Usagewatch
     @megabitsreceived = (@bitsreceived.to_f / 1024 / 1024).round(3)
   end
 
-  def self.uw_bandtx
+  def self.bandtx
 
-    def bandtx
-
-      if File.exists?("/proc/net/dev")
-        File.open("/proc/net/dev", "r") do |file|
-          @result = file.read
-        end
+    if File.exists?("/proc/net/dev")
+      File.open("/proc/net/dev", "r") do |file|
+        @result = file.read
       end
-
-      @arrRows = @result.split("\n")
-
-      @arrEthLoRows = @arrRows.grep(/eth|lo/)
-
-      rowcount = (@arrEthLoRows.count - 1)
-
-      for i in (0..rowcount)
-        @arrEthLoRows[i] = @arrEthLoRows[i].gsub(/\s+/m, ' ').strip.split(" ")
-      end
-
-      @arrColumns = Array.new
-      for l in (0..rowcount)
-        @temp = Array.new
-        @temp[0] = @arrEthLoRows[l][1]
-        @temp[1] = @arrEthLoRows[l][9]
-        @arrColumns << @temp
-      end
-
-      columncount = (@arrColumns[0].count - 1)
-
-      @arrTotal = Array.new
-      for p in (0..columncount)
-        @arrTotal[p] = 0
-      end
-
-      for j in (0..columncount)
-        for k in (0..rowcount)
-          @arrTotal[j] = @arrColumns[k][j].to_i + @arrTotal[j]
-        end
-      end
-
-      @bandrxtx = @arrTotal
     end
 
-    @new0 = bandtx
+    @arrRows = @result.split("\n")
+
+    @arrEthLoRows = @arrRows.grep(/eth|lo/)
+
+    rowcount = (@arrEthLoRows.count - 1)
+
+    for i in (0..rowcount)
+      @arrEthLoRows[i] = @arrEthLoRows[i].gsub(/\s+/m, ' ').strip.split(" ")
+    end
+
+    @arrColumns = Array.new
+    for l in (0..rowcount)
+      @temp = Array.new
+      @temp[0] = @arrEthLoRows[l][1]
+      @temp[1] = @arrEthLoRows[l][9]
+      @arrColumns << @temp
+    end
+
+    columncount = (@arrColumns[0].count - 1)
+
+    @arrTotal = Array.new
+    for p in (0..columncount)
+      @arrTotal[p] = 0
+    end
+
+    for j in (0..columncount)
+      for k in (0..rowcount)
+        @arrTotal[j] = @arrColumns[k][j].to_i + @arrTotal[j]
+      end
+    end
+
+    @bandrxtx = @arrTotal
+  end
+
+  def self.uw_bandtx
+
+    @new0 = Usagewatch.bandtx
     sleep 1
-    @new1 = bandtx
+    @new1 = Usagewatch.bandtx
 
     @bytestransmitted = @new1[1].to_i - @new0[1].to_i
     @bitstransmitted = (@bytestransmitted * 8)
     @megabitstransmitted = (@bitstransmitted.to_f / 1024 / 1024).round(3)
   end
 
-  def self.uw_diskioreads
+  def self.diskio
 
-    def diskio
-
-      if File.exists?("/proc/diskstats")
-        File.open("/proc/diskstats", "r") do |file|
-          @result = file.read
-        end
+    if File.exists?("/proc/diskstats")
+      File.open("/proc/diskstats", "r") do |file|
+        @result = file.read
       end
-
-      @arrRows = @result.split("\n")
-
-      rowcount = (@arrRows.count - 1)
-
-      for i in (0..rowcount)
-        @arrRows[i] = @arrRows[i].gsub(/\s+/m, ' ').strip.split(" ")
-      end
-
-      @arrColumns = Array.new
-      for l in (0..rowcount)
-        @temp = Array.new
-        @temp[0] = @arrRows[l][3]
-        @temp[1] = @arrRows[l][7]
-        @arrColumns << @temp
-      end
-
-      columncount = (@arrColumns[0].count - 1)
-
-      @arrTotal = Array.new
-      for p in (0..columncount)
-        @arrTotal[p] = 0
-      end
-
-      for j in (0..columncount)
-        for k in (0..rowcount)
-          @arrTotal[j] = @arrColumns[k][j].to_i + @arrTotal[j]
-        end
-      end
-
-      @diskiorw= @arrTotal
     end
 
-    @new0 = diskio
+    @arrRows = @result.split("\n")
+
+    rowcount = (@arrRows.count - 1)
+
+    for i in (0..rowcount)
+      @arrRows[i] = @arrRows[i].gsub(/\s+/m, ' ').strip.split(" ")
+    end
+
+    @arrColumns = Array.new
+    for l in (0..rowcount)
+      @temp = Array.new
+      @temp[0] = @arrRows[l][3]
+      @temp[1] = @arrRows[l][7]
+      @arrColumns << @temp
+    end
+
+    columncount = (@arrColumns[0].count - 1)
+
+    @arrTotal = Array.new
+    for p in (0..columncount)
+      @arrTotal[p] = 0
+    end
+
+    for j in (0..columncount)
+      for k in (0..rowcount)
+        @arrTotal[j] = @arrColumns[k][j].to_i + @arrTotal[j]
+      end
+    end
+
+    @diskiorw= @arrTotal
+  end
+
+
+  def self.uw_diskioreads
+
+    @new0 = Usagewatch.diskio
     sleep 1
-    @new1 = diskio
+    @new1 = Usagewatch.diskio
 
     @diskreads = @new1[0].to_i - @new0[0].to_i
   end
 
-  def self.uw_diskiowrites
+  def self.diskio
 
-    def diskio
-
-      if File.exists?("/proc/diskstats")
-        File.open("/proc/diskstats", "r") do |file|
-          @result = file.read
-        end
+    if File.exists?("/proc/diskstats")
+      File.open("/proc/diskstats", "r") do |file|
+        @result = file.read
       end
-
-      @arrRows = @result.split("\n")
-
-      rowcount = (@arrRows.count - 1)
-
-      for i in (0..rowcount)
-        @arrRows[i] = @arrRows[i].gsub(/\s+/m, ' ').strip.split(" ")
-      end
-
-      @arrColumns = Array.new
-      for l in (0..rowcount)
-        @temp = Array.new
-        @temp[0] = @arrRows[l][3]
-        @temp[1] = @arrRows[l][7]
-        @arrColumns << @temp
-      end
-
-      columncount = (@arrColumns[0].count - 1)
-
-      @arrTotal = Array.new
-      for p in (0..columncount)
-        @arrTotal[p] = 0
-      end
-
-      for j in (0..columncount)
-        for k in (0..rowcount)
-          @arrTotal[j] = @arrColumns[k][j].to_i + @arrTotal[j]
-        end
-      end
-
-      @diskiorw= @arrTotal
     end
 
-    @new0 = diskio
+    @arrRows = @result.split("\n")
+
+    rowcount = (@arrRows.count - 1)
+
+    for i in (0..rowcount)
+      @arrRows[i] = @arrRows[i].gsub(/\s+/m, ' ').strip.split(" ")
+    end
+
+    @arrColumns = Array.new
+    for l in (0..rowcount)
+      @temp = Array.new
+      @temp[0] = @arrRows[l][3]
+      @temp[1] = @arrRows[l][7]
+      @arrColumns << @temp
+    end
+
+    columncount = (@arrColumns[0].count - 1)
+
+    @arrTotal = Array.new
+    for p in (0..columncount)
+      @arrTotal[p] = 0
+    end
+
+    for j in (0..columncount)
+      for k in (0..rowcount)
+        @arrTotal[j] = @arrColumns[k][j].to_i + @arrTotal[j]
+      end
+    end
+
+    @diskiorw= @arrTotal
+  end
+
+
+  def self.uw_diskiowrites
+
+    @new0 = Usagewatch.diskio
     sleep 1
-    @new1 = diskio
+    @new1 = Usagewatch.diskio
 
     @diskwrites = @new1[1].to_i - @new0[1].to_i
   end
