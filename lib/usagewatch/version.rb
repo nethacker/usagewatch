@@ -1,3 +1,3 @@
 module Usagewatch
-  VERSION = "0.0.6.beta1"
+  VERSION = "0.0.6.beta2"
 end
