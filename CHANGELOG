@@ -1,3 +1,8 @@
+0.0.6.beta1 July 22 2013
+====
+* Added methods for Mac OS
+* Call methods like a method class
+
 0.0.6.beta1 July 19 2013
 ====
 * Added methods for top ten processes by CPU consumption
