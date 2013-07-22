@@ -1,3 +1,10 @@
+License: (MIT) Copyright (C) 2013 Author Phil Chen, Contributor Ruben Espinosa.
+
+
+0.0.6.beta3 July 22 2013
+====
+* Fixed a issue causing Disk I/O and Bandwidth methods to break
+
 0.0.6.beta2 July 22 2013
 ====
 * Added methods for Mac OS
