@@ -1,3 +1,6 @@
+[![Coverage Status](https://coveralls.io/repos/rderoldan1/usagewatch/badge.png)](https://coveralls.io/r/rderoldan1/usagewatch)
+[![Gem Version](https://badge.fury.io/rb/usagewatch.png)](http://badge.fury.io/rb/usagewatch)
+
 # usagewatch
 
 License: (MIT) Copyright (C) 2013 Author Phil Chen, Contributor Ruben Espinosa.
