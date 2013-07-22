@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Statistics on a Linux server}
   spec.homepage      = "https://github.com/nethacker/usagewatch"
   spec.license       = "MIT"
+  spec.rdoc_options << '--main' << 'README'
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
@@ -20,4 +21,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.post_install_message = "* Linux version are covered for our test.\n* Mac OS version is in development\nThanks for installing!"
 end

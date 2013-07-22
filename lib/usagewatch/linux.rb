@@ -1,5 +1,5 @@
 module Usagewatch
-  def uw_diskused
+  def self.uw_diskused
     @df = `df`
     @parts = @df.split(" ").map { |s| s.to_i }
     @sum = 0
@@ -11,12 +11,12 @@ module Usagewatch
   end
 
   # Show the percentage of disk used.
-  def uw_diskused_perc
+  def self.uw_diskused_perc
     df = `df --total`
     df.split(" ").last.to_f.round(2)
   end
 
-  def uw_cpuused
+  def self.uw_cpuused
     @proc0 = File.readlines('/proc/stat').grep(/^cpu /).first.split(" ")
     sleep 1
     @proc1 = File.readlines('/proc/stat').grep(/^cpu /).first.split(" ")
@@ -41,7 +41,7 @@ module Usagewatch
 
   # return hash of top ten proccesses by cpu consumption
   # example [["apache2", 12.0], ["passenger", 13.2]]
-  def uw_cputop
+  def self.uw_cputop
     ps = `ps aux | awk '{print $11, $3}' | sort -k2nr  | head -n 10`
     array = []
     ps.each_line do |line|
@@ -52,7 +52,7 @@ module Usagewatch
   end
 
 
-  def uw_tcpused
+  def self.uw_tcpused
     if File.exists?("/proc/net/sockstat")
       File.open("/proc/net/sockstat", "r") do |ipv4|
         @sockstat = ipv4.read
@@ -75,7 +75,7 @@ module Usagewatch
     @totaltcpused = @tcp4count.to_i + @tcp6count.to_i
   end
 
-  def uw_udpused
+  def self.uw_udpused
     if File.exists?("/proc/net/sockstat")
       File.open("/proc/net/sockstat", "r") do |ipv4|
         @sockstat = ipv4.read
@@ -97,7 +97,7 @@ module Usagewatch
     @totaludpused = @udp4count.to_i + @udp6count.to_i
   end
 
-  def uw_memused
+  def self.uw_memused
     if File.exists?("/proc/meminfo")
       File.open("/proc/meminfo", "r") do |file|
         @result = file.read
@@ -113,7 +113,7 @@ module Usagewatch
 
   # return hash of top ten proccesses by mem consumption
   # example [["apache2", 12.0], ["passenger", 13.2]]
-  def uw_memtop
+  def self.uw_memtop
     ps = `ps aux | awk '{print $11, $4}' | sort -k2nr  | head -n 10`
     array = []
     ps.each_line do |line|
@@ -123,7 +123,7 @@ module Usagewatch
     array
   end
 
-  def uw_load
+  def self.uw_load
     if File.exists?("/proc/loadavg")
       File.open("/proc/loadavg", "r") do |file|
         @loaddata = file.read
@@ -133,7 +133,7 @@ module Usagewatch
     end
   end
 
-  def uw_bandrx
+  def self.uw_bandrx
 
     def bandrx
 
@@ -186,7 +186,7 @@ module Usagewatch
     @megabitsreceived = (@bitsreceived.to_f / 1024 / 1024).round(3)
   end
 
-  def uw_bandtx
+  def self.uw_bandtx
 
     def bandtx
 
@@ -239,7 +239,7 @@ module Usagewatch
     @megabitstransmitted = (@bitstransmitted.to_f / 1024 / 1024).round(3)
   end
 
-  def uw_diskioreads
+  def self.uw_diskioreads
 
     def diskio
 
@@ -288,7 +288,7 @@ module Usagewatch
     @diskreads = @new1[0].to_i - @new0[0].to_i
   end
 
-  def uw_diskiowrites
+  def self.uw_diskiowrites
 
     def diskio
 
