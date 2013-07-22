@@ -6,7 +6,8 @@ os = RUBY_PLATFORM
 text =  "OS is not supported in this version."
 
 if os.include? "darwin"
-  puts "Mac" + text
+  require "usagewatch/mac"
+  puts "Mac version is under development"
 elsif os.include? "linux"
   require "usagewatch/linux"
 elsif os =~ /cygwin|mswin|mingw|bccwin|wince|emx/
