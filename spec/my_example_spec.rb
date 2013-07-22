@@ -1,6 +1,12 @@
 require 'rspec'
 require 'spec_helper'
 
+describe 'Version' do
+  it 'should be the version number' do
+    Usagewatch::VERSION.class.should be(String)
+  end
+end
+
 describe 'IncludeLibrary' do
   it 'should include the library' do
     a = Usagewatch
