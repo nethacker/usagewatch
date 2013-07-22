@@ -58,7 +58,7 @@ Top Ten Processes By Memory Consumption:
 ```
 
 
-## Methods availables
+## Methods available
 
 ##### Linux
     uw_diskused
