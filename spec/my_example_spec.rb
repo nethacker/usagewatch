@@ -13,7 +13,6 @@ describe 'DiskUsage' do
     a = Usagewatch.uw_diskused
     a.class.should be(Float)
     a.should_not be_nil
-    a.should be <= 100
     a.should be >= 0
   end
 end
@@ -23,6 +22,7 @@ describe 'CPUUsage' do
     a = Usagewatch.uw_cpuused
     a.class.should be(Float)
     a.should_not be_nil
+    a.should be <= 100
     a.should be >= 0
   end
 end
