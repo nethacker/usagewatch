@@ -1,3 +1,4 @@
+# License: (MIT), Copyright (C) 2013 usagewatch Author Phil Chen, contributor Ruben Espinosa
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
@@ -21,5 +22,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
-  spec.post_install_message = "* Linux version are covered for our test.\n* Mac OS version is in development\nThanks for installing!"
+  spec.post_install_message = "* Linux version are covered for our test.\nThanks for installing!"
 end
