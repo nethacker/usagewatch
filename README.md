@@ -1,5 +1,6 @@
 [![Coverage Status](https://coveralls.io/repos/rderoldan1/usagewatch/badge.png)](https://coveralls.io/r/rderoldan1/usagewatch)
 [![Gem Version](https://badge.fury.io/rb/usagewatch.png)](http://badge.fury.io/rb/usagewatch)
+[![Build Status](https://travis-ci.org/rderoldan1/usagewatch.png?branch=master)](https://travis-ci.org/rderoldan1/usagewatch)
 
 # usagewatch
 
