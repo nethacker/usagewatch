@@ -42,3 +42,26 @@ describe 'PercentageDiskUsage' do
     a.should be >= 0
   end
 end
+
+describe 'TopCPUUsage' do
+  it "should be an array of top cpu consumption proccesses " do
+    a = Usagewatch.uw_cputop
+    a.class.should be(Array )
+    a.should_not be_nil
+    a[0][0].class.should be String
+    a[0][1].class.should be String
+    a.count.should be == 10
+  end
+end
+
+describe 'TopMEMUsage' do
+  it "should be an array of top mem consumption proccesses " do
+    a = Usagewatch.uw_cputop
+    a.class.should be(Array )
+    a.should_not be_nil
+    a[0][0].class.should be String
+    a[0][1].class.should be String
+    a.count.should be == 10
+  end
+end
+
