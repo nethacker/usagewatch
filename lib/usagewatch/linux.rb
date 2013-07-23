@@ -1,4 +1,7 @@
+# License: (MIT), Copyright (C) 2013 usagewatch Author Phil Chen, contributor Ruben Espinosa
+
 module Usagewatch
+  # Show the amount of total disk used in Gigabytes
   def self.uw_diskused
     @df = `df`
     @parts = @df.split(" ").map { |s| s.to_i }
@@ -16,6 +19,7 @@ module Usagewatch
     df.split(" ").last.to_f.round(2)
   end
 
+  # Show the percentage of CPU used
   def self.uw_cpuused
     @proc0 = File.readlines('/proc/stat').grep(/^cpu /).first.split(" ")
     sleep 1
@@ -51,7 +55,7 @@ module Usagewatch
     array
   end
 
-
+  # Show the number of TCP connections used
   def self.uw_tcpused
     if File.exists?("/proc/net/sockstat")
       File.open("/proc/net/sockstat", "r") do |ipv4|
@@ -75,6 +79,7 @@ module Usagewatch
     @totaltcpused = @tcp4count.to_i + @tcp6count.to_i
   end
 
+  # Show the number of UDP connections used
   def self.uw_udpused
     if File.exists?("/proc/net/sockstat")
       File.open("/proc/net/sockstat", "r") do |ipv4|
@@ -97,6 +102,7 @@ module Usagewatch
     @totaludpused = @udp4count.to_i + @udp6count.to_i
   end
 
+  # Show the percentage of Active Memory used
   def self.uw_memused
     if File.exists?("/proc/meminfo")
       File.open("/proc/meminfo", "r") do |file|
@@ -123,6 +129,7 @@ module Usagewatch
     array
   end
 
+  # Show the average system load of the past minute
   def self.uw_load
     if File.exists?("/proc/loadavg")
       File.open("/proc/loadavg", "r") do |file|
@@ -133,6 +140,7 @@ module Usagewatch
     end
   end
 
+  # Bandwidth Received Method
   def self.bandrx
 
     if File.exists?("/proc/net/dev")
@@ -175,7 +183,7 @@ module Usagewatch
     @bandrxtx = @arrTotal
   end
 
-
+  # Current Bandwidth Received Calculation in Mbit/s
   def self.uw_bandrx
 
     @new0 = bandrx
@@ -187,6 +195,7 @@ module Usagewatch
     @megabitsreceived = (@bitsreceived.to_f / 1024 / 1024).round(3)
   end
 
+  # Bandwidth Transmitted Method
   def self.bandtx
 
     if File.exists?("/proc/net/dev")
@@ -229,6 +238,7 @@ module Usagewatch
     @bandrxtx = @arrTotal
   end
 
+  # Current Bandwidth Transmitted in Mbit/s
   def self.uw_bandtx
 
     @new0 = bandtx
@@ -240,6 +250,7 @@ module Usagewatch
     @megabitstransmitted = (@bitstransmitted.to_f / 1024 / 1024).round(3)
   end
 
+  # Disk Usage Method
   def self.diskio
 
     if File.exists?("/proc/diskstats")
@@ -280,7 +291,7 @@ module Usagewatch
     @diskiorw= @arrTotal
   end
 
-
+  # Current Disk Reads Completed
   def self.uw_diskioreads
 
     @new0 = diskio
@@ -290,6 +301,7 @@ module Usagewatch
     @diskreads = @new1[0].to_i - @new0[0].to_i
   end
 
+  # Current Disk Writes Completed
   def self.uw_diskiowrites
 
     @new0 = diskio
