@@ -71,7 +71,7 @@ if os.include? "linux"
   describe '' do
     it 'should TCP Connections Used' do
       a = Usagewatch.uw_tcpused
-      a.class.should be Integer
+      a.class.should be Fixnum
       a.should be >= 0
     end
   end
@@ -79,7 +79,7 @@ if os.include? "linux"
   describe '' do
     it 'should UDP Connections Used ' do
       a = Usagewatch.uw_udpused
-      a.class.should be Integer
+      a.class.should be Fixnum
       a.should be >= 0
     end
   end
