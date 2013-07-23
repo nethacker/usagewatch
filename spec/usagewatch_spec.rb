@@ -65,3 +65,25 @@ describe 'TopMEMUsage' do
   end
 end
 
+os = RUBY_PLATFORM
+if os.include? "linux"
+
+  describe '' do
+    it 'should TCP Connections Used' do
+      a = Usagewatch.uw_tcpused
+      a.class.class.should be Integer
+      a.should be >= 0
+    end
+  end
+
+  describe '' do
+    it 'should UDP Connections Used ' do
+      a = Usagewatch.uw_udpused
+      a.class.class.should be Integer
+      a.should be >= 0
+    end
+  end
+
+
+end
+
