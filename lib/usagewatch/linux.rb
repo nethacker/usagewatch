@@ -283,59 +283,18 @@ module Usagewatch
 
   def self.uw_diskioreads
 
-    @new0 = Usagewatch.diskio
+    @new0 = self.diskio
     sleep 1
-    @new1 = Usagewatch.diskio
+    @new1 = self.diskio
 
     @diskreads = @new1[0].to_i - @new0[0].to_i
   end
 
-  def self.diskio
-
-    if File.exists?("/proc/diskstats")
-      File.open("/proc/diskstats", "r") do |file|
-        @result = file.read
-      end
-    end
-
-    @arrRows = @result.split("\n")
-
-    rowcount = (@arrRows.count - 1)
-
-    for i in (0..rowcount)
-      @arrRows[i] = @arrRows[i].gsub(/\s+/m, ' ').strip.split(" ")
-    end
-
-    @arrColumns = Array.new
-    for l in (0..rowcount)
-      @temp = Array.new
-      @temp[0] = @arrRows[l][3]
-      @temp[1] = @arrRows[l][7]
-      @arrColumns << @temp
-    end
-
-    columncount = (@arrColumns[0].count - 1)
-
-    @arrTotal = Array.new
-    for p in (0..columncount)
-      @arrTotal[p] = 0
-    end
-
-    for j in (0..columncount)
-      for k in (0..rowcount)
-        @arrTotal[j] = @arrColumns[k][j].to_i + @arrTotal[j]
-      end
-    end
-
-    @diskiorw= @arrTotal
-  end
-
-
   def self.uw_diskiowrites
 
-    @new0 = Usagewatch.diskio
+    @new0 = self.diskio
     sleep 1
-    @new1 = Usagewatch.diskio
+    @new1 = self.diskio
 
     @diskwrites = @new1[1].to_i - @new0[1].to_i
   end
