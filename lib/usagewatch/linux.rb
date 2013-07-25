@@ -186,9 +186,9 @@ module Usagewatch
   # Current Bandwidth Received Calculation in Mbit/s
   def self.uw_bandrx
 
-    @new0 = bandrx
+    @new0 = self.bandrx
     sleep 1
-    @new1 = bandrx
+    @new1 = self.bandrx
 
     @bytesreceived = @new1[0].to_i - @new0[0].to_i
     @bitsreceived = (@bytesreceived * 8)
@@ -241,9 +241,9 @@ module Usagewatch
   # Current Bandwidth Transmitted in Mbit/s
   def self.uw_bandtx
 
-    @new0 = bandtx
+    @new0 = self.bandtx
     sleep 1
-    @new1 = bandtx
+    @new1 = self.bandtx
 
     @bytestransmitted = @new1[1].to_i - @new0[1].to_i
     @bitstransmitted = (@bytestransmitted * 8)
@@ -294,9 +294,9 @@ module Usagewatch
   # Current Disk Reads Completed
   def self.uw_diskioreads
 
-    @new0 = diskio
+    @new0 = self.diskio
     sleep 1
-    @new1 = diskio
+    @new1 = self.diskio
 
     @diskreads = @new1[0].to_i - @new0[0].to_i
   end
@@ -304,9 +304,9 @@ module Usagewatch
   # Current Disk Writes Completed
   def self.uw_diskiowrites
 
-    @new0 = diskio
+    @new0 = self.diskio
     sleep 1
-    @new1 = diskio
+    @new1 = self.diskio
 
     @diskwrites = @new1[1].to_i - @new0[1].to_i
   end

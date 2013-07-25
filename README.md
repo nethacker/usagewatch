@@ -7,7 +7,7 @@ License: (MIT) Copyright (C) 2013 usagewatch Author Phil Chen, contributor Ruben
 A Ruby Class with methods to find usage statistics on a Linux server such as CPU, Disk, TCP/UDP Connections, Load, 
 Bandwidth, Disk I/O, and Memory
 
-* If you are using a Operating System that is not Linux, please try out the Gem usagewatch_ext by Ruben Espinosa
+* If you are using a Operating System that is not Linux, please use the Gem usagewatch_ext by Ruben Espinosa
 
 ## Getting Started
 

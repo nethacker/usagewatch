@@ -1,8 +1,9 @@
 License: (MIT) Copyright (C) 2013 usagewatch Author Phil Chen, contributor Ruben Espinosa.
 
-0.0.7pre July 25 2013
+0.0.7 July 25 2013
 ====
 * Added referring people to usagewatch_ext for OS support other then Linux in the OS detection
+* Cleaned some syntax of calling methods
 
 0.0.6 July 23 2013
 ====
