@@ -4,12 +4,14 @@
 
 # usagewatch
 
-License: (MIT) Copyright (C) 2013 Author Phil Chen, Contributor Ruben Espinosa.
+License: (MIT) Copyright (C) 2013 usagewatch Author Phil Chen, contributor Ruben Espinosa.
 
 ## DESCRIPTION:
 
 A Ruby Class with methods to find usage statistics on a Linux server such as CPU, Disk, TCP/UDP Connections, Load, 
 Bandwidth, Disk I/O, and Memory
+
+* If you are using a Operating System that is not Linux, please use the Gem usagewatch_ext by Ruben Espinosa
 
 ## Getting Started
 
@@ -40,7 +42,7 @@ usw.uw_memtop
 ```bash
 Run:
 
-linux_example.rb
+ruby example.rb
 
 Example Output:
 
@@ -64,7 +66,6 @@ Top Ten Processes By Memory Consumption:
 
 ## Methods available
 
-##### Linux
     uw_diskused
     uw_diskused_perc
     uw_cpuused
@@ -78,16 +79,6 @@ Top Ten Processes By Memory Consumption:
     uw_diskiowrites
     uw_cputop
     uw_memtop
-
-##### Mac
-    uw_diskused
-    uw_diskused_perc
-    uw_cputop
-    uw_memtop
-    uw_load
-    uw_cpuused
-    uw_memused
-
 
 ## Notes
 
@@ -117,4 +108,4 @@ RUBY VERSIONS:
 ruby 1.9.3p429 (2013-05-15) [x86_64-linux]
 
 OS VERSIONS:
-CENTOS 5x 6x, Ubuntu 12.04, Fedora 18, Mountain Lion 10.8.4
+CENTOS 5x 6x, Ubuntu 12.04, Fedora 18
