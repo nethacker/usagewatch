@@ -46,13 +46,7 @@ module Usagewatch
   # return hash of top ten proccesses by cpu consumption
   # example [["apache2", 12.0], ["passenger", 13.2]]
   def self.uw_cputop
-    ps = `ps aux | awk '{print $11, $3}' | sort -k2nr  | head -n 10`
-    array = []
-    ps.each_line do |line|
-      line = line.chomp.split(" ")
-      array << [line.first.gsub(/[\[\]]/, ""), line.last]
-    end
-    array
+    top %w"$11 $3"
   end
 
   # Show the number of TCP connections used
@@ -120,13 +114,7 @@ module Usagewatch
   # return hash of top ten proccesses by mem consumption
   # example [["apache2", 12.0], ["passenger", 13.2]]
   def self.uw_memtop
-    ps = `ps aux | awk '{print $11, $4}' | sort -k2nr  | head -n 10`
-    array = []
-    ps.each_line do |line|
-      line = line.chomp.split(" ")
-      array << [line.first.gsub(/[\[\]]/, ""), line.last]
-    end
-    array
+    top %w"$11 $4"
   end
 
   # Show the average system load of the past minute
@@ -310,4 +298,21 @@ module Usagewatch
 
     @diskwrites = @new1[1].to_i - @new0[1].to_i
   end
+
+  private
+
+  def self.top(lines)
+    ps = `ps aux | awk '{print #{lines.join(", ")}}' | sort -k2nr  | head -n 10`
+    array = []
+    ps.each_line do |line|
+      line = line.chomp.split(" ")
+      array << [line.first.gsub(/[\[\]]/, "").split("/").last, line.last]
+    end
+    array
+  end
+
+  def self.to_gb(bytes)
+    (bytes/1024)/1024
+  end
+
 end
