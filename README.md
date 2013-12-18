@@ -4,7 +4,7 @@ License: (MIT) Copyright (C) 2013 usagewatch Author Phil Chen, contributor Ruben
 
 ## DESCRIPTION:
 
-A Ruby Class with methods to find usage statistics on a Linux server such as CPU, Disk, TCP/UDP Connections, Load, 
+A Ruby Class with methods to find usage statistics on a Linux server such as CPU, Disk, TCP/UDP Connections, Load,
 Bandwidth, Disk I/O, and Memory
 
 * If you are using a Operating System that is not Linux, please use the Gem usagewatch_ext by Ruben Espinosa
@@ -63,7 +63,10 @@ Top Ten Processes By Memory Consumption:
 ## Methods available
 
     uw_diskused
+    uw_diskused_on(location)
     uw_diskused_perc
+    uw_diskavailable
+    uw_diskavailable_on(location)
     uw_cpuused
     uw_tcpused
     uw_udpused
@@ -81,6 +84,12 @@ Top Ten Processes By Memory Consumption:
 Disk Used is a sum of all partitions calculated in Gigabytes
 
 Disk Used Percentage is a total percentage of all disk partitions used
+
+Disk Used On is disk space used on the location passed calculated in Gigabytes, returns "location invalid" if invalid location passed
+
+Disk Available is a sum of all partitions calculated in Gigabytes
+
+Disk Available On is disk space available on the location passed calculated in Gigabytes, returns "location invalid" if invalid location passed
 
 CPU Used is a percentage of current CPU being used
 
