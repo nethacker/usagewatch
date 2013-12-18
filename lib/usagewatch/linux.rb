@@ -13,6 +13,41 @@ module Usagewatch
     @totaldiskused = ((@round/1024)/1024).round(2)
   end
 
+  def self.uw_diskused_on(location)
+    @df = `df`
+    @df.split("\n")[1..-1].each do |line|
+      @parts = line.split(" ")
+      if @parts.last == location
+        @diskusedon = ((@parts[2].to_i.round(2)/1024)/1024).round(2)
+        break
+      end
+    end
+    @diskusedon ? @diskusedon : "location invalid"
+  end
+
+  def self.uw_diskavailable
+    @df = `df`
+    @parts = @df.split(" ").map { |s| s.to_i }
+    @sum = 0
+    for i in (9..@parts.size - 1).step(6) do
+      @sum += @parts[i+1]
+    end
+    @round = @sum.round(2)
+    @totaldiskavailable = ((@round/1024)/1024).round(2)
+  end
+
+  def self.uw_diskavailable_on(location)
+    @df = `df`
+    @df.split("\n")[1..-1].each do |line|
+      @parts = line.split(" ")
+      if @parts.last == location
+        @diskavailableon = ((@parts[3].to_i.round(2)/1024)/1024).round(2)
+        break
+      end
+    end
+    @diskavailableon ? @diskavailableon : "location invalid"
+  end
+
   # Show the percentage of disk used.
   def self.uw_diskused_perc
     df = `df --total`
