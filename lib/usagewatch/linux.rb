@@ -23,7 +23,7 @@ module Usagewatch
     @proc0 = File.readlines('/proc/stat').grep(/^cpu /).first.split(" ")
     @bandrx_new0 = self.bandrx
     @bandtx_new0 = self.bandtx
-    @diskio_new1 = self.diskio
+    @diskio_new0 = self.diskio
 
     sleep 1
 
