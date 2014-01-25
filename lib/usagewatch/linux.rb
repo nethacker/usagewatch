@@ -19,11 +19,23 @@ module Usagewatch
     df.split(" ").last.to_f.round(2)
   end
 
-  # Show the percentage of CPU used
-  def self.uw_cpuused
+  def self.batch_refresh
     @proc0 = File.readlines('/proc/stat').grep(/^cpu /).first.split(" ")
+    @bandrx_new0 = self.bandrx
+    @bandtx_new0 = self.bandtx
+    @diskio_new1 = self.diskio
+
     sleep 1
+
     @proc1 = File.readlines('/proc/stat').grep(/^cpu /).first.split(" ")
+    @bandrx_new1 = self.bandrx
+    @bandtx_new1 = self.bandtx
+    @diskio_new1 = self.diskio
+  end
+
+  # Show the percentage of CPU used
+  def self.uw_cpuused(now = true)
+    long_operation if now
 
     @proc0usagesum = @proc0[1].to_i + @proc0[2].to_i + @proc0[3].to_i
     @proc1usagesum = @proc1[1].to_i + @proc1[2].to_i + @proc1[3].to_i
@@ -184,13 +196,10 @@ module Usagewatch
   end
 
   # Current Bandwidth Received Calculation in Mbit/s
-  def self.uw_bandrx
+  def self.uw_bandrx(now = true)
+    long_operation if now
 
-    @new0 = self.bandrx
-    sleep 1
-    @new1 = self.bandrx
-
-    @bytesreceived = @new1[0].to_i - @new0[0].to_i
+    @bytesreceived = @bandrx_new1[0].to_i - @bandrx_new0[0].to_i
     @bitsreceived = (@bytesreceived * 8)
     @megabitsreceived = (@bitsreceived.to_f / 1024 / 1024).round(3)
   end
@@ -239,13 +248,10 @@ module Usagewatch
   end
 
   # Current Bandwidth Transmitted in Mbit/s
-  def self.uw_bandtx
+  def self.uw_bandtx(now = true)
+    long_operation if now
 
-    @new0 = self.bandtx
-    sleep 1
-    @new1 = self.bandtx
-
-    @bytestransmitted = @new1[1].to_i - @new0[1].to_i
+    @bytestransmitted = @bandtx_new1[1].to_i - @bandtx_new0[1].to_i
     @bitstransmitted = (@bytestransmitted * 8)
     @megabitstransmitted = (@bitstransmitted.to_f / 1024 / 1024).round(3)
   end
@@ -292,22 +298,16 @@ module Usagewatch
   end
 
   # Current Disk Reads Completed
-  def self.uw_diskioreads
+  def self.uw_diskioreads(now = true)
+    long_operation if now
 
-    @new0 = self.diskio
-    sleep 1
-    @new1 = self.diskio
-
-    @diskreads = @new1[0].to_i - @new0[0].to_i
+    @diskreads = @diskio_new1[0].to_i - @diskio_new0[0].to_i
   end
 
   # Current Disk Writes Completed
-  def self.uw_diskiowrites
+  def self.uw_diskiowrites(now = true)
+    long_operation if now
 
-    @new0 = self.diskio
-    sleep 1
-    @new1 = self.diskio
-
-    @diskwrites = @new1[1].to_i - @new0[1].to_i
+    @diskwrites = @diskio_new1[1].to_i - @diskio_new0[1].to_i
   end
 end
