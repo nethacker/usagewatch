@@ -35,7 +35,7 @@ module Usagewatch
 
   # Show the percentage of CPU used
   def self.uw_cpuused(now = true)
-    long_operation if now
+    batch_refresh if now
 
     @proc0usagesum = @proc0[1].to_i + @proc0[2].to_i + @proc0[3].to_i
     @proc1usagesum = @proc1[1].to_i + @proc1[2].to_i + @proc1[3].to_i
@@ -197,7 +197,7 @@ module Usagewatch
 
   # Current Bandwidth Received Calculation in Mbit/s
   def self.uw_bandrx(now = true)
-    long_operation if now
+    batch_refresh if now
 
     @bytesreceived = @bandrx_new1[0].to_i - @bandrx_new0[0].to_i
     @bitsreceived = (@bytesreceived * 8)
@@ -249,7 +249,7 @@ module Usagewatch
 
   # Current Bandwidth Transmitted in Mbit/s
   def self.uw_bandtx(now = true)
-    long_operation if now
+    batch_refresh if now
 
     @bytestransmitted = @bandtx_new1[1].to_i - @bandtx_new0[1].to_i
     @bitstransmitted = (@bytestransmitted * 8)
@@ -299,14 +299,14 @@ module Usagewatch
 
   # Current Disk Reads Completed
   def self.uw_diskioreads(now = true)
-    long_operation if now
+    batch_refresh if now
 
     @diskreads = @diskio_new1[0].to_i - @diskio_new0[0].to_i
   end
 
   # Current Disk Writes Completed
   def self.uw_diskiowrites(now = true)
-    long_operation if now
+    batch_refresh if now
 
     @diskwrites = @diskio_new1[1].to_i - @diskio_new0[1].to_i
   end
