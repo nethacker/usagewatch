@@ -103,7 +103,7 @@ module Usagewatch
   end
 
   # Show the percentage of Active Memory used
-  def self.uw_memused(memtotal_place, memactive_place)
+  def self.uw_memused(memtotal_place = nil, memactive_place = nil)
     if File.exists?("/proc/meminfo")
       File.open("/proc/meminfo", "r") do |file|
         @result = file.read
