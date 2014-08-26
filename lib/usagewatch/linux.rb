@@ -111,20 +111,21 @@ module Usagewatch
     end
     
     @memstat = @result.split("\n").collect{|x| x.strip}
-    
-    @memstat.each_with_index do |stat, index|
-    	if memtotal_place == nil
-	    	if stat.include?("MemTotal")
-	    		memtotal_place = index
-	    	end
+    if memtotal_place == nil or memactive_place == nil
+	    @memstat.each_with_index do |stat, index|
+	    	if memtotal_place == nil
+		    	if stat.include?("MemTotal")
+		    		memtotal_place = index
+		    	end
+		    end
+		    if memactive_place == nil
+		    	if stat.include?("Active")
+		    		memactive_place = index
+		    	end
+		    end
+	    	
 	    end
-	    if memactive_place == nil
-	    	if stat.include?("Active")
-	    		memactive_place = index
-	    	end
-	    end
-    	
-    end
+	end
     if memtotal_place == nil or memactive_place == nil
     	raise "Unable to locate memory total and memory free entries. Please define with uw_memused(memtotal_place, memactive_place) to list actual line locations"
     end
