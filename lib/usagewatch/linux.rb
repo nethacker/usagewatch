@@ -103,16 +103,33 @@ module Usagewatch
   end
 
   # Show the percentage of Active Memory used
-  def self.uw_memused
+  def self.uw_memused(memtotal_place, memactive_place)
     if File.exists?("/proc/meminfo")
       File.open("/proc/meminfo", "r") do |file|
         @result = file.read
       end
     end
-
+    
     @memstat = @result.split("\n").collect{|x| x.strip}
-    @memtotal = @memstat[0].gsub(/[^0-9]/, "")
-    @memactive = @memstat[5].gsub(/[^0-9]/, "")
+    
+    @memstat.each_with_index do |stat, index|
+    	if memtotal_place == nil
+	    	if stat.include?("MemTotal")
+	    		memtotal_place = index
+	    	end
+	    end
+	    if memactive_place == nil
+	    	if stat.include?("Active")
+	    		memactive_place = index
+	    	end
+	    end
+    	
+    end
+    if memtotal_place == nil or memactive_place == nil
+    	raise "Unable to locate memory total and memory free entries. Please define with uw_memused(memtotal_place, memactive_place) to list actual line locations"
+    end
+    @memtotal = @memstat[memtotal_place].gsub(/[^0-9]/, "")
+    @memactive = @memstat[memactive_place].gsub(/[^0-9]/, "")
     @memactivecalc = (@memactive.to_f * 100) / @memtotal.to_f
     @memusagepercentage = @memactivecalc.round
   end
