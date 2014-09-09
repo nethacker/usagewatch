@@ -4,6 +4,7 @@ module Usagewatch
   # Show the amount of total disk used in Gigabytes
   def self.uw_diskused
     @df = `df`
+    @df = @df.split("\n").drop(1).join("\n")
     @parts = @df.split(" ").map { |s| s.to_i }
     @sum = 0
     for i in (9..@parts.size - 1).step(6) do
@@ -16,7 +17,7 @@ module Usagewatch
   # Show the percentage of disk used.
   def self.uw_diskused_perc
     df = `df --total`
-    df.split(" ").last.to_f.round(2)
+    df.split("\n").last.split(" ")[4].to_f.round(2)
   end
 
   # Show the percentage of CPU used
