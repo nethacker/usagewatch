@@ -16,7 +16,10 @@ module Usagewatch
   # Show the percentage of disk used.
   def self.uw_diskused_perc
     df = `df --total`
-    df.split(" ").last.to_f.round(2)
+
+    df.split(" ").reverse.each do |l|
+      return l.to_f.round(2) if l.include?("%")
+    end
   end
 
   # Show the percentage of CPU used
@@ -110,10 +113,14 @@ module Usagewatch
       end
     end
 
-    @memstat = @result.split("\n").collect{|x| x.strip}
-    @memtotal = @memstat[0].gsub(/[^0-9]/, "")
-    @memactive = @memstat[5].gsub(/[^0-9]/, "")
-    @memactivecalc = (@memactive.to_f * 100) / @memtotal.to_f
+    memhash = Hash.new
+    @result.each_line do |l| 
+      key, val = l.split(':')
+      if val.include?('kB') then val = val.gsub(/\s+kB/, ''); end
+      memhash["#{key}"] = val.strip
+    end
+
+    @memactivecalc = (memhash["Active"].to_f * 100) / memhash["MemTotal"].to_f
     @memusagepercentage = @memactivecalc.round
   end
 
