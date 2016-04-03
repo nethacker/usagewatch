@@ -6,7 +6,7 @@ require 'usagewatch'
 usw =  Usagewatch
 
 puts "#{usw.uw_diskused} Gigabytes Used"
-puts "#{usw.uw_diskused_perc} Perventage of Gigabytes Used"
+puts "#{usw.uw_diskused_perc} Percentage of Gigabytes Used"
 puts "#{usw.uw_cpuused}% CPU Used"
 puts "#{usw.uw_tcpused} TCP Connections Used"
 puts "#{usw.uw_udpused} UDP Connections Used"
