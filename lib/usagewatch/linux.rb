@@ -16,7 +16,12 @@ module Usagewatch
   # Show the percentage of disk used.
   def self.uw_diskused_perc
     df = `df --total`
-    df.split(" ").last.to_f.round(2)
+    parts = df.split(" ")
+    perc = parts.last
+    if perc == "-" # ubuntu adds - for path instead of blank like others.
+      perc = parts[-2]
+    end
+    perc.to_f.round(2)
   end
 
   # Show the percentage of CPU used
